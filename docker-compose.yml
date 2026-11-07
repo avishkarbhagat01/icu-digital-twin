@@ -1,0 +1,13 @@
+# Optional: docker compose up --build   ->  http://localhost:8080
+services:
+  backend:
+    build: ./backend
+    volumes: [dbdata:/data]
+    env_file:
+      - ./backend/.env
+  frontend:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [backend]
+volumes:
+  dbdata:
